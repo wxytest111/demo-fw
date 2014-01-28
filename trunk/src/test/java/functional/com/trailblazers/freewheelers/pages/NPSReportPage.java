@@ -1,12 +1,12 @@
 package functional.com.trailblazers.freewheelers.pages;
 
+import functional.com.trailblazers.freewheelers.core.PageHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 /**
  * Created by rameshb on 1/16/14.
  */
-public class NetPromoterScoreReportPage extends BasePage {
+public class NPSReportPage extends PageHelper {
     private By totalResponses;
     private By npsScore;
     private By percentagePromoters;
@@ -14,8 +14,7 @@ public class NetPromoterScoreReportPage extends BasePage {
     private By percentageDetractors;
 
     // TODO - Complete the element ids once NPS page is developed
-    public NetPromoterScoreReportPage(WebDriver driver) {
-        super(driver);
+    public NPSReportPage() {
         totalResponses = By.id("");
         npsScore = By.id("");
         percentagePromoters = By.id("");
@@ -23,23 +22,23 @@ public class NetPromoterScoreReportPage extends BasePage {
         percentageDetractors = By.id("");
     }
 
-    public boolean totalResponsesCorrect(String expectedValue) {
+    public boolean isTotalResponsesCorrect(String expectedValue) {
         return findElement(totalResponses).getText().equals(expectedValue);
     }
 
-    public boolean npsScoreCorrect(String expectedValue) {
+    public boolean isNPSScoreCorrect(String expectedValue) {
         return findElement(npsScore).getText().equals(expectedValue);
     }
 
-    public boolean percentagePromotersCorrect(String expectedValue) {
+    public boolean isPercentagePromotersCorrect(String expectedValue) {
         return findElement(percentagePromoters).getText().equals(expectedValue);
     }
 
-    public boolean percentagePassivesCorrect(String expectedValue) {
+    public boolean isPercentagePassivesCorrect(String expectedValue) {
         return findElement(percentagePassives).getText().equals(expectedValue);
     }
 
-    public boolean percentageDetractorsCorrect(String expectedValue) {
+    public boolean isPercentageDetractorsCorrect(String expectedValue) {
         return findElement(percentageDetractors).getText().equals(expectedValue);
     }
 }
