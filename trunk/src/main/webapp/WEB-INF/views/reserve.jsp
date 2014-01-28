@@ -22,4 +22,6 @@
         </tbody>
 </table>
 
+<script type="text/javascript" src="/scripts/js/Survey.js"></script>
+
 <%@ include file="footer.jsp" %>

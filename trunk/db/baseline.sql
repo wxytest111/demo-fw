@@ -42,6 +42,14 @@ CREATE TABLE reserve_order
         reservation_timestamp timestamp without time zone NOT NULL
 );
 
+CREATE TABLE survey_entry
+(
+        survey_entry_id SERIAL PRIMARY KEY,
+        account_id bigint NOT NULL,
+        rating int NOT NULL,
+        comment character varying(255)
+);
+
 insert into account (email_address, account_name, password, phone_number, enabled)
        values ('admin@freewheelers.com', 'AdminCat','admin', '', true);
 insert into account (email_address, account_name, password, phone_number, enabled)

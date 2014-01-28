@@ -3,10 +3,30 @@
 <%@ include file="header.jsp" %>
 
 <div id="surveyReport">
-    <div id="promoterPercentage"></div>
-    <div id="passivePercentage"></div>
-    <div id="detractorPercentage"></div>
-    <div id="npsScore"></div>
+
+
+    <div>
+        <label>Promoter Percentage:</label>
+        <span id="promoterPercentage">${npsReport.promoters}<span>
+    </div>
+
+
+    <div>
+        <label>Detractors Percentage:</label>
+        <span id="passivePercentage">${npsReport.detractors}</span>
+    </div>
+
+
+    <div>
+        <label>Passives Percentage:</label>
+        <span id="detractorPercentage">${npsReport.passives}</span>
+    </div>
+
+
+    <div>
+        <label>NPS Score:</label>
+        <span id="npsScore">${npsReport.npsScore}</span>
+    </div>
 </div>
 
 <%@ include file="footer.jsp" %>

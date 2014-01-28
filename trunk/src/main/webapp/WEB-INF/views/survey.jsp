@@ -48,12 +48,6 @@
         </div>
     </c:if>
 
-    <c:if test="${validation.serviceErrorOccurred}">
-        <div id="errorMessage">
-            Something went wrong! Please try again in a few minutes.
-        </div>
-    </c:if>
-
     <button type="submit" value="Submit">Done</button>
 </form>
 

@@ -46,7 +46,6 @@ public class ScreenApi {
         return this;
     }
 
-    //TODO Minno:I changed this to contains and renamed the method - need to discuss with you guys
     public ScreenApi should_show_login_page() {
         assertThat(driver.getCurrentUrl(), startsWith(URLs.login()));
         return this;
@@ -113,29 +112,28 @@ public class ScreenApi {
         return this;
     }
 
-    public ScreenApi should_show_survey_promoter_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("promoterPercentage")).getText(), is(Integer.toString(percentage)));
+    public ScreenApi should_show_survey_promoter_percentage(double percentage) {
+        assertThat(driver.findElement(By.id("promoterPercentage")).getText(), is(Double.toString(percentage)));
         return this;
     }
 
-    public ScreenApi should_show_survey_passive_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("passivePercentage")).getText(), is(Integer.toString(percentage)));
+    public ScreenApi should_show_survey_passive_percentage(double percentage) {
+        assertThat(driver.findElement(By.id("passivePercentage")).getText(), is(Double.toString(percentage)));
         return this;
     }
 
-    public ScreenApi should_show_survey_detractor_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("detractorPercentage")).getText(), is(Integer.toString(percentage)));
+    public ScreenApi should_show_survey_detractor_percentage(double percentage) {
+        assertThat(driver.findElement(By.id("detractorPercentage")).getText(), is(Double.toString(percentage)));
         return this;
     }
 
-    public ScreenApi should_show_nps_score(String npsScore) {
-        assertThat(driver.findElement(By.id("npsScore")).getText(), is(npsScore));
+    public ScreenApi should_show_nps_score(double npsScore) {
+        assertThat(driver.findElement(By.id("npsScore")).getText(), is(Double.toString(npsScore)));
         return this;
     }
 
-    public ScreenApi should_show_user_unauthorised() {
-        assertThat(driver.getPageSource(),containsString("503"));
-        assertThat(driver.getPageSource(),containsString("Unauthorised"));
+    public ScreenApi should_show_access_denied() {
+        assertThat(driver.getPageSource(),containsString("403 Your access is denied"));
         return this;
     }
 }
