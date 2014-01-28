@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ScreenApi {
@@ -46,19 +45,13 @@ public class ScreenApi {
         return this;
     }
 
-    //TODO Minno:I changed this to contains and renamed the method - need to discuss with you guys
-    public ScreenApi should_show_login_page() {
-        assertThat(driver.getCurrentUrl(), startsWith(URLs.login()));
+    public ScreenApi shows_login() {
+        assertThat(driver.getCurrentUrl(), is(URLs.login()));
         return this;
     }
 
     public ScreenApi shows_admin_profile() {
         assertThat(driver.getCurrentUrl(), is(URLs.admin()));
-        return this;
-    }
-
-    public ScreenApi should_show_survey_page() {
-        assertThat(driver.getCurrentUrl(), is(URLs.survey()));
         return this;
     }
 
@@ -100,11 +93,6 @@ public class ScreenApi {
         String errorMessage = driver.findElement(By.className(messageClass)).getText();
 
         assertThat(errorMessage, containsString(expectedMessage));
-        return this;
-    }
-
-    public ScreenApi should_show_thank_you_page() {
-        assertThat(driver.findElements(By.id("surveyThankYou")).size(), is(1));
         return this;
     }
 }
