@@ -1,11 +1,9 @@
 package com.trailblazers.freewheelers.service;
 
 import com.trailblazers.freewheelers.model.Account;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface AccountService {
 
     List<Account> findAll();

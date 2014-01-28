@@ -2,19 +2,17 @@ package com.trailblazers.freewheelers.service.impl;
 
 import com.trailblazers.freewheelers.mappers.AccountMapper;
 import com.trailblazers.freewheelers.mappers.AccountRoleMapper;
-import com.trailblazers.freewheelers.mappers.MyBatisUtil;
 import com.trailblazers.freewheelers.model.Account;
 import com.trailblazers.freewheelers.model.AccountRole;
+import com.trailblazers.freewheelers.mappers.MyBatisUtil;
 import com.trailblazers.freewheelers.model.AccountValidation;
 import com.trailblazers.freewheelers.service.AccountService;
 import com.trailblazers.freewheelers.service.ServiceResult;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 
-@Service
 public class AccountServiceImpl implements AccountService {
 
     public static final String USER = "ROLE_USER";

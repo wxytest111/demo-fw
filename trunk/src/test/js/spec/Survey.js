@@ -1,3 +1,0 @@
-describe("Survey",function(){
-   it("")
-});
