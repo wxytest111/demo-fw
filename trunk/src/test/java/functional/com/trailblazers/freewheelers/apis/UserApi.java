@@ -139,9 +139,4 @@ public class UserApi {
             return "";
         }
     }
-
-    // TODO - Complete after NPS pages are developed
-    public UserApi visits_nps_page() {
-        return this;
-    }
 }
