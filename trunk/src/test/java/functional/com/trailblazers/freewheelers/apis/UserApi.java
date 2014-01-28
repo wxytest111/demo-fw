@@ -95,11 +95,6 @@ public class UserApi {
         return this;
     }
 
-    public UserApi visit_survey_report_page() {
-        driver.get(URLs.surveyReport());
-        return this;
-    }
-
     public UserApi wants_to_manage_items() {
         driver.get(URLs.admin());
         driver.findElement(By.id("manageItems")).click();

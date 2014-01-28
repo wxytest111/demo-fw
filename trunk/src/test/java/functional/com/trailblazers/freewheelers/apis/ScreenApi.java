@@ -107,35 +107,4 @@ public class ScreenApi {
         assertThat(driver.findElements(By.id("surveyThankYou")).size(), is(1));
         return this;
     }
-
-    public ScreenApi should_show_survey_report_page() {
-        assertThat(driver.findElements(By.id("surveyReport")).size(), is(1));
-        return this;
-    }
-
-    public ScreenApi should_show_survey_promoter_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("promoterPercentage")).getText(), is(Integer.toString(percentage)));
-        return this;
-    }
-
-    public ScreenApi should_show_survey_passive_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("passivePercentage")).getText(), is(Integer.toString(percentage)));
-        return this;
-    }
-
-    public ScreenApi should_show_survey_detractor_percentage(int percentage) {
-        assertThat(driver.findElement(By.id("detractorPercentage")).getText(), is(Integer.toString(percentage)));
-        return this;
-    }
-
-    public ScreenApi should_show_nps_score(String npsScore) {
-        assertThat(driver.findElement(By.id("npsScore")).getText(), is(npsScore));
-        return this;
-    }
-
-    public ScreenApi should_show_user_unauthorised() {
-        assertThat(driver.getPageSource(),containsString("503"));
-        assertThat(driver.getPageSource(),containsString("Unauthorised"));
-        return this;
-    }
 }

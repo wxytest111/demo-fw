@@ -28,36 +28,16 @@ public class SurveyController {
                              @RequestParam(value = "survey_rating", required = false) String surveyRating,
                              @RequestParam(value = "survey_comment", required = false) String surveyComment) {
         String username = principal.getName();
-
         if (surveyRating == null || surveyRating.isEmpty()) {
             return showValidationError();
         }
-
-        try {
-            surveyService.submitSurvey(username, surveyRating, surveyComment);
-        } catch (Exception e) {
-            return showServiceError();
-        }
-
-        return new ModelAndView("surveyConfirmation");
-    }
-
-    @RequestMapping(value = "/report", method = RequestMethod.GET)
-    public ModelAndView getReport(){
-        return new ModelAndView("surveyReport");
-    }
-
-    private ModelAndView showServiceError() {
-        return modelAndViewWithError("serviceErrorOccurred");
+        surveyService.submitSurvey(username, surveyRating, surveyComment);
+        return new ModelAndView();
     }
 
     private ModelAndView showValidationError() {
-        return modelAndViewWithError("mandatoryFieldMissing");
-    }
-
-    private ModelAndView modelAndViewWithError(String typeOfError) {
         ModelMap model = new ModelMap();
-        model.addAttribute(typeOfError, true);
-        return new ModelAndView("survey", "errors", model);
+        model.addAttribute("mandatoryFieldMissing", true);
+        return new ModelAndView("survey","validation",model);
     }
 }
