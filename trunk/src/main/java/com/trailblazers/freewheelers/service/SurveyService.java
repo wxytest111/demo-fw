@@ -3,6 +3,7 @@ package com.trailblazers.freewheelers.service;
 import com.trailblazers.freewheelers.mappers.MyBatisUtil;
 import com.trailblazers.freewheelers.mappers.SurveyMapper;
 import com.trailblazers.freewheelers.model.SurveyEntry;
+import com.trailblazers.freewheelers.model.factory.SurveyFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.HashMap;
 public class SurveyService {
 
     private SqlSession sqlSession;
+    private SurveyFactory surveyFactory;
     private SurveyMapper surveyMapper;
     public static final String PROMOTERS_PERCENTAGE = "promoters percentage";
     public static final String DETRACTORS_PERCENTAGE = "detractors percentage";
@@ -19,16 +21,17 @@ public class SurveyService {
     public static final String NPS_SCORE = "nps score";
 
     public SurveyService() {
-        this(MyBatisUtil.getSqlSessionFactory().openSession());
+        this(MyBatisUtil.getSqlSessionFactory().openSession(), new SurveyFactory());
     }
 
-    public SurveyService(SqlSession sqlSession) {
+    public SurveyService(SqlSession sqlSession, SurveyFactory surveyFactory) {
         this.sqlSession = sqlSession;
+        this.surveyFactory = surveyFactory;
         this.surveyMapper = sqlSession.getMapper(SurveyMapper.class);
     }
 
     public void submitSurvey(Long accountId, String rating, String comment) {
-        SurveyEntry surveyEntry = new SurveyEntry(accountId, Integer.parseInt(rating), comment);
+        SurveyEntry surveyEntry = surveyFactory.create(accountId, Integer.parseInt(rating), comment);
         surveyMapper.insert(surveyEntry);
         sqlSession.commit();
     }
