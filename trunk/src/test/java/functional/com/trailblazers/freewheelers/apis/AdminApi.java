@@ -3,24 +3,31 @@ package functional.com.trailblazers.freewheelers.apis;
 import com.trailblazers.freewheelers.model.Account;
 import com.trailblazers.freewheelers.model.Item;
 import com.trailblazers.freewheelers.model.ItemType;
+import com.trailblazers.freewheelers.model.SurveyEntry;
 import com.trailblazers.freewheelers.service.AccountService;
 import com.trailblazers.freewheelers.service.ItemService;
+import com.trailblazers.freewheelers.service.SurveyService;
 import com.trailblazers.freewheelers.service.impl.AccountServiceImpl;
 import com.trailblazers.freewheelers.service.impl.ItemServiceImpl;
 
-import static functional.com.trailblazers.freewheelers.helpers.SyntaxSugar.SOME_PHONE_NUMBER;
-import static functional.com.trailblazers.freewheelers.helpers.SyntaxSugar.SOME_PRICE;
-import static functional.com.trailblazers.freewheelers.helpers.SyntaxSugar.emailFor;
+import static functional.com.trailblazers.freewheelers.helpers.SyntaxSugar.*;
 
 
 public class AdminApi {
 
     private AccountService accountService;
     private ItemService itemService;
+    private SurveyService surveyService;
 
     public AdminApi() {
         this.accountService = new AccountServiceImpl();
         this.itemService = new ItemServiceImpl();
+        this.surveyService = new SurveyService();
+    }
+
+    public AdminApi there_are_no_survey_entries() {
+        surveyService.deleteAll();
+        return this;
     }
 
     public AdminApi there_is_no_account_for(String accountName) {
@@ -80,5 +87,10 @@ public class AdminApi {
                     .setEmail_address(emailFor(userName))
                     .setPhoneNumber(SOME_PHONE_NUMBER)
                     .setEnabled(true);
+    }
+
+    public AdminApi there_is_a_survey_entry_for(long accountId,int feedbackType, String comment) {
+        surveyService.submitSurvey(accountId, new SurveyEntry(feedbackType, comment));
+        return this;
     }
 }

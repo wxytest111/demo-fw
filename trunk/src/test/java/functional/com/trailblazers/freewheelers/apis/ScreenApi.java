@@ -38,6 +38,8 @@ public class ScreenApi {
         expectMessageWithClass(expectedMessage, "navbar-text");
     }
 
+
+
     public ScreenApi shows_profile_for(String name) {
         String userDetails = driver.findElement(By.id("user-details")).getText();
 
@@ -95,4 +97,15 @@ public class ScreenApi {
         assertThat(errorMessage, containsString(expectedMessage));
         return this;
     }
+
+    public ScreenApi should_show_access_denied() {
+        assertThat(driver.getPageSource(),containsString("403 Your access is denied"));
+        return this;
+    }
+
+    public ScreenApi should_not_contain_nps_report_link_in_header() {
+        assertThat(driver.findElements(By.linkText("NPS Report")).size(), is(0));
+        return this;
+    }
+
 }

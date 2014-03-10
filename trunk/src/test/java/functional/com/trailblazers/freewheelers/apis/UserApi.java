@@ -1,34 +1,39 @@
 package functional.com.trailblazers.freewheelers.apis;
 
-import functional.com.trailblazers.freewheelers.helpers.*;
+import com.google.common.base.Function;
+import functional.com.trailblazers.freewheelers.helpers.HomeTable;
+import functional.com.trailblazers.freewheelers.helpers.ManageItemTable;
+import functional.com.trailblazers.freewheelers.helpers.OrderTable;
+import functional.com.trailblazers.freewheelers.helpers.URLs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
-import static functional.com.trailblazers.freewheelers.helpers.Controls.check;
-import static functional.com.trailblazers.freewheelers.helpers.Controls.fillField;
-import static functional.com.trailblazers.freewheelers.helpers.Controls.select;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static functional.com.trailblazers.freewheelers.helpers.Controls.*;
 
 public class UserApi {
 
+    private final String mainPageWindowHandle;
     private WebDriver driver;
 
     public UserApi(WebDriver driver) {
         this.driver = driver;
+        this.mainPageWindowHandle = driver.getWindowHandle();
     }
 
     public UserApi is_logged_out() {
         driver.get(URLs.logout());
         driver.findElement(By.linkText("Logout")).click();
-
         return this;
     }
 
@@ -49,11 +54,8 @@ public class UserApi {
         driver.findElement(By.linkText("Create Account")).click();
 
         fillField(driver.findElement(By.id("fld_email")), email);
-
         fillField(driver.findElement(By.id("fld_password")), password);
-
         fillField(driver.findElement(By.id("fld_name")), name);
-
         fillField(driver.findElement(By.id("fld_phoneNumber")), phoneNumber);
 
         driver.findElement(By.id("createAccount")).click();
@@ -83,6 +85,16 @@ public class UserApi {
 
     public UserApi visits_admin_profile() {
         driver.findElement(By.linkText("Admin Profile")).click();
+        return this;
+    }
+
+    public UserApi visits_nps_report_page() {
+        driver.findElement(By.linkText("NPS Report")).click();
+        return this;
+    }
+
+    public UserApi visits_nps_report_page_by_link() {
+        driver.get(URLs.surveyReport());
         return this;
     }
 
@@ -138,5 +150,31 @@ public class UserApi {
         } catch (UnsupportedEncodingException e) {
             return "";
         }
+    }
+
+    public UserApi waits_for_survey_popup() throws InterruptedException {
+        waitForSurveyToShow();
+        focusOnPopUpWindow();
+        return this;
+    }
+
+    private void focusOnPopUpWindow() {
+        Iterator<String> handleIterator = driver.getWindowHandles().iterator();
+        String popupHandle = handleIterator.next();
+        popupHandle = popupHandle.equals(mainPageWindowHandle) ? handleIterator.next() : popupHandle;
+        driver.switchTo().window(popupHandle);
+    }
+
+    private void waitForSurveyToShow() {
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(5, TimeUnit.SECONDS)
+                .pollingEvery(100, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+
+        wait.until(new Function<WebDriver, Boolean>() {
+            public Boolean apply(WebDriver driver)  {
+                return driver.getWindowHandles().size() > 1;
+            }
+        });
     }
 }

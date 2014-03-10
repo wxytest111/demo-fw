@@ -23,4 +23,8 @@ public class URLs {
     public static String userProfile() {
         return BASE + "/userProfile";
     }
+
+    public static String surveyReport() {
+        return BASE + "/survey/report";
+    }
 }

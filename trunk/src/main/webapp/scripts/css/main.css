@@ -1,3 +1,6 @@
+@import url("survey-form.css");
+@import url("survey-report.css");
+
 * {
     margin: 0px;
     padding: 0px;
@@ -109,5 +112,9 @@ table {
 }
 
 .text-error {
+    color: indianred;
+}
+
+.mandatory {
     color: indianred;
 }

@@ -5,6 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public abstract class MapperTestBase {
     private SqlSession sqlSession;
 
@@ -23,4 +26,7 @@ public abstract class MapperTestBase {
         return sqlSession;
     }
 
+    protected ResultSet execute(String statement) throws SQLException {
+        return sqlSession.getConnection().prepareStatement(statement).executeQuery();
+    }
 }
