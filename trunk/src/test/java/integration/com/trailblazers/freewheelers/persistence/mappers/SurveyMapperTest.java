@@ -1,5 +1,6 @@
-package com.trailblazers.freewheelers.mappers;
+package integration.com.trailblazers.freewheelers.persistence.mappers;
 
+import com.trailblazers.freewheelers.mappers.SurveyMapper;
 import com.trailblazers.freewheelers.model.NpsReport;
 import com.trailblazers.freewheelers.model.SurveyEntry;
 import integration.com.trailblazers.freewheelers.persistence.MapperTestBase;
