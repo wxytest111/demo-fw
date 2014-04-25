@@ -7,23 +7,27 @@ public class NpsReport {
     private int total;
 
     public Double getPromotersPercentage() {
-        return ((double) promoters / total) * 100;
+        return percentageFor(promoters);
     }
 
     public Double getDetractorsPercentage() {
-        return ((double) detractors / total) * 100;
+        return percentageFor(detractors);
     }
 
     public Double getPassivesPercentage() {
-        return ((double) passives / total) * 100;
+        return percentageFor(passives);
     }
 
     public Double getNpsScore() {
-        return (double) (promoters - detractors) / total * 100;
+        return percentageFor(promoters - detractors);
     }
 
     public int getTotal(){
         return total;
+    }
+
+    private Double percentageFor(double value) {
+        return total == 0 ? 0.0 : (value / total) * 100;
     }
 
 }

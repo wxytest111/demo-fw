@@ -64,6 +64,16 @@ public class SurveyMapperTest extends MapperTestBase {
     }
 
     @Test
+    public void shouldGenerateEmptyReport() throws Exception {
+        NpsReport npsReport = surveyMapper.generateNpsReport();
+
+        assertThat(npsReport.getPromotersPercentage(), is(0.0));
+        assertThat(npsReport.getDetractorsPercentage(), is(0.0));
+        assertThat(npsReport.getPassivesPercentage(), is(0.0));
+        assertThat(npsReport.getNpsScore(), is(0.0));
+    }
+
+    @Test
     public void shouldReturnPromoterComments() {
         surveyMapper.insert(1L, new SurveyEntry(10, "positive comment"));
         surveyMapper.insert(1L, new SurveyEntry(0, "negative comment"));
