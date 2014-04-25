@@ -19,7 +19,7 @@ import java.util.Map;
 @RequestMapping("/account")
 public class AccountController {
 
-    private final AccountService accountService;
+    AccountService accountService;
 
     public AccountController() {
         accountService = new AccountServiceImpl();
