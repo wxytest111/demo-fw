@@ -1,4 +1,4 @@
-tech stack
+Tech Stack
 ==========
 * java 7 __needs to be installed__
 * firefox __needs to be installed__
@@ -9,7 +9,7 @@ tech stack
 * junit4 - checked in in lib folder
 * selenium - checked in in lib folder
 
-get started
+Get Started
 ===========
 1. Check the database configuration in the following files:
 	* src/main/webapp/WEB-INF/spring/persistence-config.xml
@@ -32,4 +32,10 @@ get started
 	* go to http://localhost:8080/
 
 
-
+Set Up Your IntelliJ Project
+===========
+1. Checkout the code
+2. Copy the saved .idea files: "cd trunk && cp -r .idea.template/ .idea/"
+3. Open IntelliJ IDEA
+4. Click “Open Project” -> Choose the “trunk” folder that you just checked out from source control (Or use "File" -> “Open…”)
+5. If you see a popup in which IntelliJ wants to use your confidential information in you keychain, click “Allow” or “Always Allow”
