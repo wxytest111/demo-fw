@@ -141,6 +141,10 @@
       </exec>
     </target>
 
+    <target name="bootstrap" description="Runs the bootstrap SQL script (see db/baseline.sql for more).">
+      <exec executable="db/bootstrap.sh" />
+    </target>
+
     <target name="migration:new" description="Generate skeleton of a migration script that you can then simply fill in">
       <condition property="migration.description">
         <and>
