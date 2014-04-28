@@ -127,11 +127,44 @@
         <fail message="One or more tests failed. Please check the logs for more info under bin directory"/>
     </target>
 
+    <target name="migration:up" description="Runs the do section of all the pending migrations in order, one after another">
+      <exec executable="tools/mybatis-migrations/bin/migrate">
+        <arg value="--path=./db/migrations" />
+        <arg value="up" />
+      </exec>
+    </target>
+
+    <target name="migration:down" description="Runs the undo section of the last applied migration only">
+      <exec executable="tools/mybatis-migrations/bin/migrate">
+        <arg value="--path=./db/migrations" />
+        <arg value="down" />
+      </exec>
+    </target>
+
+    <target name="migration:new" description="Generate skeleton of a migration script that you can then simply fill in">
+      <condition property="migration.description">
+        <and>
+          <isset property="description"/>
+        </and>
+      </condition>
+      <fail unless="migration.description">
+        Must specify description with -Ddescription="migration description"
+      </fail>
+      <exec executable="tools/mybatis-migrations/bin/migrate">
+        <arg value="--path=./db/migrations" />
+        <arg value="new" />
+        <arg value="${description}" />
+      </exec>
+    </target>
+
     <target name="init-db" depends="stop" >
         <exec executable="db/create.sh" />
     </target>
 
-    <target name="test-integration-without-report" depends="compile-test, init-db"  description="run all integration tests without report">
+    <target name="run-pending-migrations" depends="migration:up" description="run all the pending migrations">
+    </target>
+
+    <target name="test-integration-without-report" depends="compile-test, init-db, run-pending-migrations"  description="run all integration tests without report">
         <common-test-runner test-dir="classpath.for.integration.test" classpath="classpath.tests"/>
     </target>
 
@@ -139,7 +172,7 @@
             depends="test-integration-without-report, report-tests, check-failed-tests"
             description="Run integration tests, report under bin directory"/>
 
-    <target name="test-functional-without-report" depends="compile-test, init-db"  description="run all functional tests without report">
+    <target name="test-functional-without-report" depends="compile-test, init-db, run-pending-migrations"  description="run all functional tests without report">
         <exec executable="./scripts/start-server.sh"/>
         <sleep seconds="10"/>
         <common-test-runner test-dir="classpath.for.functional.test" classpath="classpath.tests"/>
