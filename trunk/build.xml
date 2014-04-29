@@ -201,7 +201,7 @@
         <delete dir="${dist.dir}"/>
     </target>
 
-    <target name="start" depends="compile-main" description="start jetty server">
+    <target name="start" depends="run-pending-migrations, compile-main" description="start jetty server">
       <exec executable="./scripts/start-server.sh" />
     </target>
 
