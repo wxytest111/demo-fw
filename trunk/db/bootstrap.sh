@@ -1,8 +1,8 @@
 #!/bin/bash
 
-function bootstrap() {
+function insertBaselineData() {
   DATABASE=$1
   PGPASSWORD=postgres psql -U postgres -h localhost -d ${DATABASE} < db/baseline.sql
 }
 
-bootstrap "trailblazers"
+insertBaselineData "trailblazers"
