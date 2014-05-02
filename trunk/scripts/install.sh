@@ -25,7 +25,7 @@ cd /tmp/\$TIMESTAMP
 unzip freewheelers.zip
 sh stop-server.sh
 sh db/create.sh
-tools/mybatis-migrations/bin/migrate --path=./db/migrations up
+sh tools/mybatis-migrations/bin/migrate --path=./db/migrations up
 sh db/bootstrap.sh
 nohup sh start-server.sh > server.out 2> server.err < /dev/null
 EOF
