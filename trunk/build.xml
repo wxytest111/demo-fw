@@ -141,7 +141,7 @@
 		<exec executable="db/bootstrap.sh" />
     </target>
 
-    <target name="test-integration-without-report" depends="compile-test, init-db, migrate-db"  description="run all integration tests without report">
+    <target name="test-integration-without-report" depends="compile-test, init-db"  description="run all integration tests without report">
         <common-test-runner test-dir="classpath.for.integration.test" classpath="classpath.tests"/>
     </target>
 
@@ -149,7 +149,7 @@
             depends="test-integration-without-report, report-tests, check-failed-tests"
             description="Run integration tests, report under bin directory"/>
 
-    <target name="test-functional-without-report" depends="compile-test, init-db, migrate-db"  description="run all functional tests without report">
+    <target name="test-functional-without-report" depends="compile-test, init-db"  description="run all functional tests without report">
         <exec executable="./scripts/start-server.sh"/>
         <sleep seconds="10"/>
         <common-test-runner test-dir="classpath.for.functional.test" classpath="classpath.tests"/>

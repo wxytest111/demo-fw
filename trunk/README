@@ -14,13 +14,13 @@ Get Started
 1. Check the database configuration in the following files:
 	* src/main/webapp/WEB-INF/spring/persistence-config.xml
 
-2. Start postgres server
+2. Start postgres server and setup database
     * check that the postgres superuser exists
-      run "psql -c '\du'
+      run "psql -c '\du'"
     * if user does not exist
         run "createuser -s postgres" (no need to set a password, defaults to 'postgres')
-    * create database trailblazers ,see persistance-config.xml
-      run "db/create.sh"
+    * create database trailblazers
+      run "./tools/ant/bin/ant init-db"
     * to add some data
       run "psql -h localhost -U postgres --password -d trailblazers < db/backup.sql"
 
