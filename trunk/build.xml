@@ -129,16 +129,16 @@
     </target>
 
     <target name="migrate-db" description="Runs database migrations in order">
-      <exec executable="tools/mybatis-migrations/bin/migrate">
+      <exec executable="db/migrations/mybatis/bin/migrate">
         <arg value="--path=./db/migrations" />
         <arg value="up" />
       </exec>
     </target>
 
-    <target name="init-db" depends="stop" >
+    <target name="init-db" depends="stop" description="Creates the database from scratch and applies all migrations">
         <exec executable="db/create.sh" />
-		<antcall target="migrate-db" />
-		<exec executable="db/bootstrap.sh" />
+        <antcall target="migrate-db" />
+        <exec executable="db/bootstrap.sh" />
     </target>
 
     <target name="test-integration-without-report" depends="compile-test, init-db"  description="run all integration tests without report">
@@ -207,7 +207,6 @@
         <zip destfile="${dist.dir}/freewheelers.zip">
             <zipfileset dir="${src.dir}/main/webapp" prefix="src/main/webapp"/>
             <zipfileset dir="${lib.dir}/main" prefix="lib/main"/>
-            <zipfileset dir="${tools.dir}" prefix="tools" />
             <zipfileset dir="${dist.dir}" includes="freewheelers.jar" fullpath="lib/main/freewheelers.jar"/>
             <zipfileset dir="scripts" includes="*.sh"/>
             <zipfileset dir="db" prefix="db" />
