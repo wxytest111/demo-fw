@@ -11,7 +11,7 @@ public class OrderTest extends UserJourneyBase {
     public void testOrderProcess() throws Exception {
         String Arno = "Arno Admin";
         String Bob = "Bob Buyer";
-        String Simplon_Frame = "Simplon Pavo 3 Ultra";
+        String Simplon_Frame = "Simplon Pavo 3 Ultra " + System.currentTimeMillis();
 
         admin
                 .there_is_an_admin(Arno, SOME_PASSWORD)
