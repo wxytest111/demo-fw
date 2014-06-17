@@ -6,6 +6,13 @@ public class NpsReport {
     private int passives;
     private int total;
 
+    public NpsReport(int promoters, int detractors, int passives, int total) {
+        this.promoters = promoters;
+        this.detractors = detractors;
+        this.passives = passives;
+        this.total = total;
+    }
+
     public Double getPromotersPercentage() {
         return percentageFor(promoters);
     }

@@ -21,6 +21,12 @@ public interface SurveyMapper {
             "count(case when rating > 6 and rating < 9 then 1 else null end) as passives " +
             "from survey_entry"
     )
+    @ConstructorArgs(value = {
+            @Arg(column = "promoters", javaType = int.class),
+            @Arg(column = "detractors", javaType = int.class),
+            @Arg(column = "passives", javaType = int.class),
+            @Arg(column = "total", javaType = int.class)
+    })
     public NpsReport generateNpsReport();
 
     @Delete(

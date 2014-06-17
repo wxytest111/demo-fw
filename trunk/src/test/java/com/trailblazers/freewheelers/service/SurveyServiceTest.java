@@ -49,7 +49,7 @@ public class SurveyServiceTest {
     @Test
     public void shouldFetchNpsReport() throws Exception {
 
-        NpsReport expectedNpsReport = new NpsReport();
+        NpsReport expectedNpsReport = new NpsReport(1, 2, 3, 6);
         when(surveyMapper.generateNpsReport()).thenReturn(expectedNpsReport);
 
         NpsReport actualNpsReport = surveyService.generateNpsReport();

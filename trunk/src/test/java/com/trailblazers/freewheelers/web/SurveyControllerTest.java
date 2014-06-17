@@ -89,7 +89,7 @@ public class SurveyControllerTest {
 
     @Test
     public void shouldShowReport() {
-        NpsReport expectedNpsReport = new NpsReport();
+        NpsReport expectedNpsReport = new NpsReport(1, 2, 3, 6);
         SurveyComments expectedSurveyComments = new SurveyComments(new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         when(surveyService.generateNpsReport()).thenReturn(expectedNpsReport);
         when(surveyService.getSurveyComments()).thenReturn(expectedSurveyComments);
