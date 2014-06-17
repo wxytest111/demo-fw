@@ -21,6 +21,7 @@ INSERT INTO account VALUES (6, 'Michael Stipe', 'mstipe@freewheelers.com', 'REMi
 INSERT INTO account VALUES (8, 'Peter Buck', 'peter-buck@gmx.de', 'P3t3r', '1234567890', true);
 INSERT INTO account VALUES (7, 'Scott McCaughey', 'smccaughey@gmail.com', 'ScottScottScott', '1234567890', true);
 INSERT INTO account VALUES (9, 'Bill Rieflin', 'billrieflin@apple.com', 'YoudontKNOW!!!', '', true);
+INSERT INTO account VALUES (10, 'SurveyUser', 'survey@freewheelers.com', 'survey', '', true);
 
 
 --
@@ -40,6 +41,7 @@ INSERT INTO account_role VALUES (4, 'Michael Stipe', 'ROLE_USER');
 INSERT INTO account_role VALUES (5, 'Scott McCaughey', 'ROLE_USER');
 INSERT INTO account_role VALUES (6, 'Peter Buck', 'ROLE_USER');
 INSERT INTO account_role VALUES (7, 'Bill Rieflin', 'ROLE_USER');
+INSERT INTO account_role VALUES (8, 'SurveyUser', 'ROLE_USER');
 
 
 --
@@ -96,6 +98,154 @@ INSERT INTO reserve_order VALUES (16, 6, 13, 'NEW', '', '2013-03-26 20:14:25.336
 
 SELECT pg_catalog.setval('reserve_order_order_id_seq', 18, true);
 
+
+--
+-- Data for Name: survey_entry; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,'This site is really confusing. I wouldn’t recommend it. The price is right, but its all too hard.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,'Did I buy something? Its not clear.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 0,'It seemed to be a lot of bother, really hard to use. You need to fix it.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 3,'This doesn’t feel safe. Are you encrypting my passwword? Please tell me you are not storing it unencrypted.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 3,'There are many site which do this better, such as http://www.wrenchscience.com/.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 6,'Meh. Your site is ok.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 9,'I loved it.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 6,'Did I buy a bike? What happens next?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 7,'Its ok.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 5,'Meh.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,'Am I getting a bike or not? I cant tell. What does "reserved" mean?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 4,'I wish I could have seen pictures of the bikes.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 9,'Cant wait for my new fixie!'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 8,'Good.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 5,'OK'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 6,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 4,'That was terrifying. Did I just buy something?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 5,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'I would be more likely to  recommend warts than this site. Sorry.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 5,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 5,'Why don’t you have pictures?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'I don’t understand what just happened.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'Aren''t you going to email me or something? I want my money back!'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'Why do I have to create an account?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'Too hard to use.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,'Difficult.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'I would be bitten by a weasel than ever go through that again. You need to make this less painful.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'Hard to use.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 2,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 1,'I''m confused.'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 3,''
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 4,'Should I be seeing images?'
+FROM account WHERE account.account_name = 'SurveyUser';
+
+INSERT INTO survey_entry (account_id, rating, comment)
+SELECT account.account_id, 7,'its OK.'
+FROM account WHERE account.account_name = 'SurveyUser';
 
 --
 -- PostgreSQL database dump complete
