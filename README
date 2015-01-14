@@ -16,14 +16,15 @@ Get Started
 
 
 2. Start postgres server and setup database
-    * check that the postgres superuser exists
+    * check that the demopostgres superuser exists
       run "psql -c '\du'"
     * if user does not exist
-        run "createuser -s postgres" (no need to set a password, defaults to 'postgres')
+        run "createuser -s demopostgres" (defaults password is 'postgres')
+        run "Alter role demopostgres with password 'demopostgres'"
     * create database trailblazers
       run "./gradlew initdb"
     * to add some data
-      run "psql -h localhost -U postgres --password -d trailblazers < db/backup.sql"
+      run "psql -h localhost -U demopostgres --password -d demotrailblazers < db/backup.sql"
 
 
 3. Check out existing tasks

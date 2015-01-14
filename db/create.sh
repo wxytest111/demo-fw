@@ -2,8 +2,9 @@
 
 function createdb() {
   DATABASE=$1
-  PGPASSWORD=postgres psql -U postgres -h localhost -c "drop database ${DATABASE}"
-  PGPASSWORD=postgres psql -U postgres -h localhost -c "create database ${DATABASE}"
+  PGPASSWORD=demopostgres psql -U demopostgres -d template1 -h localhost -c "drop database ${DATABASE}"
+  PGPASSWORD=demopostgres psql -U demopostgres -d template1 -h localhost -c "create database ${DATABASE}"
 }
-
-createdb "trailblazers"
+createuser -s demopostgres
+createdb demopostgres
+createdb "demotrailblazers"

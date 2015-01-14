@@ -1,0 +1,8 @@
+PGPASSWORD=demopostgres psql -U demopostgres -h localhost -c "drop database ${DATABASE}"
+might raise some problem, said:
+psql: FATAL:  database "demopostgres" does not exist
+it is because we don't execute `createdb demopostgres` before.
+
+reason:
+By default, postgres tries to connect to a database with the same name as your user. To prevent this default behaviour, just specify user and database: 
+psql -U Username DatabaseName 
